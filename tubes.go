@@ -147,3 +147,81 @@ func main() {
 	}
 	sortProduk(daftarProduk)
 	sortTransaksi(daftarTransaksi)
+	var pilihan int
+	for {
+		fmt.Println("\n===<< MENU >>===")
+		fmt.Println("1. Tampilkan daftar produk (terurut harga)")
+		fmt.Println("2. Tampilkan daftar transaksi (terurut total)")
+		fmt.Println("3. Cari produk berdasarkan nama")
+		fmt.Println("4. Cari transaksi berdasarkan ID")
+		fmt.Println("5. Keluar")
+		fmt.Print("Pilih menu: ")
+		fmt.Scan(&pilihan)
+		switch pilihan {
+		case 1:
+			fmt.Println("\nDaftar Produk (terurut berdasarkan harga):")
+			for i := 0; i < len(daftarProduk); i++ {
+				p := daftarProduk[i]
+				fmt.Printf("- ID %d: %s - Rp%.0f\n", p.ID, p.Nama, p.Harga)
+			}
+		case 2:
+			fmt.Println("\nDaftar Transaksi (terurut berdasarkan total):")
+			for i := 0; i < len(daftarTransaksi); i++ {
+				t := daftarTransaksi[i]
+				namaPelanggan := dataPelangganByID(daftarPelanggan, t.IDPelanggan)
+				// Ambil daftar nama produk
+				var daftarNamaProduk []string
+				for j := 0; j < len(t.IDProduks); j++ {
+					namaProduk := dataProdukByID(daftarProduk, t.IDProduks[j])
+					daftarNamaProduk = append(daftarNamaProduk, namaProduk)
+				}
+				namaProdukGabung := strings.Join(daftarNamaProduk, ", ")
+				fmt.Printf("- ID Transaksi %d | ID Pelanggan %d (%s)\n", t.ID, t.IDPelanggan, namaPelanggan)
+				fmt.Printf("  Produk dibeli: %s\n", namaProdukGabung)
+				fmt.Printf("  Total: Rp%.0f\n\n", t.Total)
+			}
+		case 3:
+			var keyword string
+			fmt.Print("Masukkan kata kunci nama produk: ")
+			fmt.Scan(&keyword)
+			hasil := cariProdukNama(daftarProduk, keyword)
+			if len(hasil) == 0 {
+				fmt.Println("Produk tidak ditemukan.")
+			} else {
+				fmt.Println("Hasil pencarian:")
+				for i := 0; i < len(hasil); i++ {
+					p := hasil[i]
+					fmt.Printf("- ID %d: %s - Rp%.0f\n", p.ID, p.Nama, p.Harga)
+				}
+			}
+		case 4:
+			var cariID int
+			fmt.Print("Masukkan ID transaksi: ")
+			fmt.Scan(&cariID)
+			trans := cariTransaksiID(daftarTransaksi, cariID)
+			if trans != nil {
+				namaPelanggan := dataPelangganByID(daftarPelanggan, trans.IDPelanggan)
+
+				var daftarNamaProduk []string
+				for i := 0; i < len(trans.IDProduks); i++ {
+					namaProduk := dataProdukByID(daftarProduk, trans.IDProduks[i])
+					daftarNamaProduk = append(daftarNamaProduk, namaProduk)
+				}
+				namaProdukGabung := strings.Join(daftarNamaProduk, ", ")
+
+				fmt.Printf("\nDitemukan:\n")
+				fmt.Printf("ID Transaksi %d | ID Pelanggan %d (%s)\n", trans.ID, trans.IDPelanggan, namaPelanggan)
+				fmt.Printf("Produk dibeli: %s\n", namaProdukGabung)
+				fmt.Printf("Total: Rp%.0f\n", trans.Total)
+			} else {
+				fmt.Println("Transaksi tidak ditemukan.")
+			}
+		case 5:
+			fmt.Println("Terima kasih telah belanja di kitamart")
+			return
+		default:
+			fmt.Println("Pilihan tidak valid. Silakan coba lagi.")
+		}
+	}
+}
+
