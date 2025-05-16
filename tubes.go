@@ -69,3 +69,22 @@ func cariTransaksiID(transaksi []Transaksi, id int) *Transaksi {
 	return nil
 }
 
+// Ambil nama produk berdasarkan ID
+func dataProdukByID(produk []Produk, id int) string {
+	for i := 0; i < len(produk); i++ {
+		if produk[i].ID == id {
+			return produk[i].Nama
+		}
+	}
+	return "Produk tidak ditemukan"
+}
+
+// Ambil nama pelanggan berdasarkan ID
+func dataPelangganByID(pelanggan []Pelanggan, id int) string {
+	for i := 0; i < len(pelanggan); i++ {
+		if pelanggan[i].ID == id {
+			return pelanggan[i].Nama
+		}
+	}
+	return "Pelanggan tidak ditemukan"
+}
