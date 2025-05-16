@@ -47,3 +47,25 @@ func sortTransaksi(transaksi []Transaksi) {
 		transaksi[j+1] = kunci
 	}
 }
+
+// Cari produk dengan nama / unsur nama
+func cariProdukNama(produk []Produk, keyword string) []Produk {
+	var hasil []Produk
+	for i := 0; i < len(produk); i++ {
+		if strings.Contains(strings.ToLower(produk[i].Nama), strings.ToLower(keyword)) {
+			hasil = append(hasil, produk[i])
+		}
+	}
+	return hasil
+}
+
+// Cari transaksi berdasarkan ID
+func cariTransaksiID(transaksi []Transaksi, id int) *Transaksi {
+	for i := 0; i < len(transaksi); i++ {
+		if transaksi[i].ID == id {
+			return &transaksi[i]
+		}
+	}
+	return nil
+}
+
