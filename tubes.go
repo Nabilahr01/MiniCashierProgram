@@ -88,3 +88,62 @@ func dataPelangganByID(pelanggan []Pelanggan, id int) string {
 	}
 	return "Pelanggan tidak ditemukan"
 }
+
+// Hitung total belanja
+func hitungTotal(produk []Produk, idProduks []int) float64 {
+	total := 0.0
+	for i := 0; i < len(idProduks); i++ {
+		id := idProduks[i]
+		for j := 0; j < len(produk); j++ {
+			if id == produk[j].ID {
+				total += produk[j].Harga
+			}
+		}
+	}
+	return total
+}
+
+func main() {
+	var jumlahProduk, jumlahPelanggan, jumlahTransaksi int
+	fmt.Print("Masukkan jumlah produk: ")
+	fmt.Scan(&jumlahProduk)
+	daftarProduk := make([]Produk, jumlahProduk)
+	for i := 0; i < jumlahProduk; i++ {
+		fmt.Printf("Produk %d:\n", i+1)
+		daftarProduk[i].ID = i + 1
+		fmt.Print("  Nama produk: ")
+		fmt.Scan(&daftarProduk[i].Nama)
+		fmt.Print("  Harga produk: ")
+		fmt.Scan(&daftarProduk[i].Harga)
+	}
+
+	fmt.Print("\nMasukkan jumlah pelanggan: ")
+	fmt.Scan(&jumlahPelanggan)
+	daftarPelanggan := make([]Pelanggan, jumlahPelanggan)
+	for i := 0; i < jumlahPelanggan; i++ {
+		daftarPelanggan[i].ID = i + 1
+		fmt.Printf("Nama pelanggan %d: ", i+1)
+		fmt.Scan(&daftarPelanggan[i].Nama)
+	}
+
+	fmt.Print("\nMasukkan jumlah transaksi: ")
+	fmt.Scan(&jumlahTransaksi)
+	daftarTransaksi := make([]Transaksi, jumlahTransaksi)
+	for i := 0; i < jumlahTransaksi; i++ {
+		trans := &daftarTransaksi[i]
+		trans.ID = i + 1
+		fmt.Printf("\nTransaksi %d:\n", i+1)
+		fmt.Print("  ID Pelanggan: ")
+		fmt.Scan(&trans.IDPelanggan)
+		var jumlahBeli int
+		fmt.Print("  Jumlah produk yang dibeli: ")
+		fmt.Scan(&jumlahBeli)
+		trans.IDProduks = make([]int, jumlahBeli)
+		for j := 0; j < jumlahBeli; j++ {
+			fmt.Printf("    Masukkan ID produk ke-%d: ", j+1)
+			fmt.Scan(&trans.IDProduks[j])
+		}
+		trans.Total = hitungTotal(daftarProduk, trans.IDProduks)
+	}
+	sortProduk(daftarProduk)
+	sortTransaksi(daftarTransaksi)
