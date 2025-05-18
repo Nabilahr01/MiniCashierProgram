@@ -12,7 +12,7 @@ type Pelanggan <
 type Transaksi <
     ID: integer
     PelangganID: integer
-    ProdukIDs: array of integer #?
+    ProdukIDs: array of integer 
     Total: real
 >
 
@@ -55,16 +55,16 @@ kamus
     i: integer
     hasil: Produk
 algoritma
-    hasil <- array [] of Produk #?
+    hasil <- array [] of Produk
     for i <- 0 to length(produkList) - 1 do
-        if toLower(keyword) in toLower(produkList[i].Nama) then #?
+        if toLower(keyword) in toLower(produkList[i].Nama) then
             append hasil with produkList[i]
         endif
     endfor
     return hasil
 endfunction
 
-function cariTransaksi(in transaksiList: Transaksi, in id: integer) -> Transaksi or null #?
+function cariTransaksi(in transaksiList: Transaksi, in id: integer) -> Transaksi or null
 kamus
     i: integer
 algoritma
@@ -100,7 +100,7 @@ algoritma
     return "Pelanggan tidak ditemukan"
 endfunction
 
-procedure hitungTotal(in produkList: Produk, in produkIDs: array of integer, out total: real) #?
+procedure hitungTotal(in produkList: Produk, in produkIDs: array of integer, out total: real)
 kamus
     i, j: integer
     total: real
@@ -125,7 +125,7 @@ kamus
 algoritma
     output("Masukkan jumlah produk: ")
     input(jumlahProduk)
-    buat array daftarProduk sebanyak jumlahProduk #?
+    buat array daftarProduk sebanyak jumlahProduk
     for i from 0 to jumlahProduk - 1 do
         daftarProduk[i].ID ← i + 1
         output("Nama produk ke-", i+1, ": ")
@@ -162,7 +162,7 @@ algoritma
         daftarTransaksi[i].Total ← hitungTotal(daftarProduk, IDProduks)
     endfor
 
-    panggil sortProduk(daftarProduk) #?
+    panggil sortProduk(daftarProduk)
     panggil sortTransaksi(daftarTransaksi)
 
     pilihan: integer
@@ -192,7 +192,7 @@ algoritma
 
                     for j from 0 to length(t.IDProduks) - 1 do
                         namaProduk ← dataProdukByID(daftarProduk, t.IDProduks[j])
-                        tambah namaProduk ke daftarNamaProduk #?
+                        tambah namaProduk ke daftarNamaProduk 
                     endfor
 
                     gabungan ← gabungkan daftarNamaProduk dengan ", "
@@ -239,7 +239,7 @@ algoritma
 
             case 5:
                 output("Terima kasih telah belanja di Kitamart")
-                keluar dari program #?
+                keluar dari program
 
             default:
                 output("Pilihan tidak valid")
