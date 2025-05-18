@@ -1,1 +1,255 @@
-pseudocode
+type Produk = record
+    ID: integer
+    Nama: string
+    Harga: real
+endrecord
+
+type Pelanggan = record
+    ID: integer
+    Nama: string
+endrecord
+
+type Transaksi = record
+    ID: integer
+    PelangganID: integer
+    ProdukIDs: array of integer
+    Total: real
+endrecord
+
+procedure urutkanProduk(in/out produkList: array of Produk)
+kamus
+    i, j, minIndex: integer
+    temp: Produk
+algoritma
+    for i <- 0 to length(produkList) - 2 do
+        minIndex <- i
+        for j <- i + 1 to length(produkList) - 1 do
+            if produkList[j].Harga < produkList[minIndex].Harga then
+                minIndex <- j
+            endif
+        endfor
+        temp <- produkList[i]
+        produkList[i] <- produkList[minIndex]
+        produkList[minIndex] <- temp
+    endfor
+endprocedure
+
+procedure urutkanTransaksi(in/out transaksiList: array of Transaksi)
+kamus
+    i, j: integer
+    temp: Transaksi
+algoritma
+    for i <- 1 to length(transaksiList) - 1 do
+        temp <- transaksiList[i]
+        j <- i - 1
+        while j >= 0 and transaksiList[j].Total < temp.Total do
+            transaksiList[j + 1] <- transaksiList[j]
+            j <- j - 1
+        endwhile
+        transaksiList[j + 1] <- temp
+    endfor
+endprocedure
+
+function cariProduk(in produkList: array of Produk, in keyword: string) -> array of Produk
+kamus
+    i: integer
+    hasil: array of Produk
+algoritma
+    hasil <- []
+    for i <- 0 to length(produkList) - 1 do
+        if toLower(keyword) in toLower(produkList[i].Nama) then
+            append hasil with produkList[i]
+        endif
+    endfor
+    return hasil
+endfunction
+
+function cariTransaksi(in transaksiList: array of Transaksi, in id: integer) -> Transaksi or null
+kamus
+    i: integer
+algoritma
+    for i <- 0 to length(transaksiList) - 1 do
+        if transaksiList[i].ID = id then
+            return transaksiList[i]
+        endif
+    endfor
+    return null
+endfunction
+
+function getNamaProduk(in produkList: array of Produk, in id: integer) -> string
+kamus
+    i: integer
+algoritma
+    for i <- 0 to length(produkList) - 1 do
+        if produkList[i].ID = id then
+            return produkList[i].Nama
+        endif
+    endfor
+    return "Produk tidak ditemukan"
+endfunction
+
+function getNamaPelanggan(in pelangganList: array of Pelanggan, in id: integer) -> string
+kamus
+    i: integer
+algoritma
+    for i <- 0 to length(pelangganList) - 1 do
+        if pelangganList[i].ID = id then
+            return pelangganList[i].Nama
+        endif
+    endfor
+    return "Pelanggan tidak ditemukan"
+endfunction
+
+procedure hitungTotal(in produkList: array of Produk, in produkIDs: array of integer, out total: real)
+kamus
+    i, j: integer
+    total: real
+algoritma
+    total <- 0
+    for i <- 0 to length(produkIDs) - 1 do
+        for j <- 0 to length(produkList) - 1 do
+            if produkList[j].ID = produkIDs[i] then
+                total <- total + produkList[j].Harga
+            endif
+        endfor
+    endfor
+endprocedure
+
+procedure kitamart
+kamus
+    DEKLARASI jumlahProduk, jumlahPelanggan, jumlahTransaksi: INTEGER
+    DEKLARASI daftarProduk: array of Produk
+    DEKLARASI daftarPelanggan: array of Pelanggan
+    DEKLARASI daftarTransaksi: array of Transaksi
+algoritma
+    TULIS "Masukkan jumlah produk: "
+    BACA jumlahProduk
+    BUAT array daftarProduk sebanyak jumlahProduk
+
+    FOR i FROM 0 TO jumlahProduk - 1 DO
+        daftarProduk[i].ID ← i + 1
+        TULIS "Nama produk ke-", i+1, ": "
+        BACA daftarProduk[i].Nama
+        TULIS "Harga produk: "
+        BACA daftarProduk[i].Harga
+    ENDFOR
+
+    TULIS "Masukkan jumlah pelanggan: "
+    BACA jumlahPelanggan
+    BUAT array daftarPelanggan sebanyak jumlahPelanggan
+
+    FOR i FROM 0 TO jumlahPelanggan - 1 DO
+        daftarPelanggan[i].ID ← i + 1
+        TULIS "Nama pelanggan ke-", i+1, ": "
+        BACA daftarPelanggan[i].Nama
+    ENDFOR
+
+    TULIS "Masukkan jumlah transaksi: "
+    BACA jumlahTransaksi
+    BUAT array daftarTransaksi sebanyak jumlahTransaksi
+
+    FOR i FROM 0 TO jumlahTransaksi - 1 DO
+        daftarTransaksi[i].ID ← i + 1
+        TULIS "ID Pelanggan: "
+        BACA daftarTransaksi[i].IDPelanggan
+
+        TULIS "Jumlah produk yang dibeli: "
+        BACA jumlahBeli
+        BUAT array IDProduks sebanyak jumlahBeli
+
+        FOR j FROM 0 TO jumlahBeli - 1 DO
+            TULIS "ID produk ke-", j+1, ": "
+            BACA IDProduks[j]
+        ENDFOR
+
+        daftarTransaksi[i].IDProduks ← IDProduks
+        daftarTransaksi[i].Total ← hitungTotal(daftarProduk, IDProduks)
+    ENDFOR
+
+    PANGGIL sortProduk(daftarProduk)
+    PANGGIL sortTransaksi(daftarTransaksi)
+
+    DEKLARASI pilihan: INTEGER
+
+    ULANGI
+        TULIS "===<< MENU >>==="
+        TULIS "1. Tampilkan daftar produk (terurut harga)"
+        TULIS "2. Tampilkan daftar transaksi (terurut total)"
+        TULIS "3. Cari produk berdasarkan nama"
+        TULIS "4. Cari transaksi berdasarkan ID"
+        TULIS "5. Keluar"
+        TULIS "Pilih menu: "
+        BACA pilihan
+
+        SWITCH pilihan
+            CASE 1:
+                TULIS "Daftar Produk:"
+                FOR i FROM 0 TO length(daftarProduk) - 1 DO
+                    TULIS daftarProduk[i].ID, daftarProduk[i].Nama, daftarProduk[i].Harga
+                ENDFOR
+
+            CASE 2:
+                TULIS "Daftar Transaksi:"
+                FOR i FROM 0 TO length(daftarTransaksi) - 1 DO
+                    t ← daftarTransaksi[i]
+                    namaPelanggan ← dataPelangganByID(daftarPelanggan, t.IDPelanggan)
+                    daftarNamaProduk ← array kosong
+
+                    FOR j FROM 0 TO length(t.IDProduks) - 1 DO
+                        namaProduk ← dataProdukByID(daftarProduk, t.IDProduks[j])
+                        TAMBAH namaProduk KE daftarNamaProduk
+                    ENDFOR
+
+                    gabungan ← gabungkan daftarNamaProduk dengan ", "
+                    TULIS "Transaksi", t.ID, "oleh", namaPelanggan
+                    TULIS "Produk:", gabungan
+                    TULIS "Total:", t.Total
+                ENDFOR
+
+            CASE 3:
+                TULIS "Masukkan kata kunci nama produk: "
+                BACA keyword
+                hasil ← cariProdukNama(daftarProduk, keyword)
+                IF panjang(hasil) = 0 THEN
+                    TULIS "Produk tidak ditemukan"
+                ELSE
+                    TULIS "Hasil pencarian:"
+                    FOR i FROM 0 TO panjang(hasil) - 1 DO
+                        TULIS hasil[i].ID, hasil[i].Nama, hasil[i].Harga
+                    ENDFOR
+                ENDIF
+
+            CASE 4:
+                TULIS "Masukkan ID transaksi: "
+                BACA cariID
+                trans ← cariTransaksiID(daftarTransaksi, cariID)
+                IF trans ≠ NULL THEN
+                    namaPelanggan ← dataPelangganByID(daftarPelanggan, trans.IDPelanggan)
+                    daftarNamaProduk ← array kosong
+
+                    FOR i FROM 0 TO length(trans.IDProduks) - 1 DO
+                        namaProduk ← dataProdukByID(daftarProduk, trans.IDProduks[i])
+                        TAMBAH namaProduk KE daftarNamaProduk
+                    ENDFOR
+
+                    gabungan ← gabungkan daftarNamaProduk dengan ", "
+                    TULIS "Transaksi:", trans.ID
+                    TULIS "Pelanggan:", namaPelanggan
+                    TULIS "Produk:", gabungan
+                    TULIS "Total:", trans.Total
+                ELSE
+                    TULIS "Transaksi tidak ditemukan"
+                ENDIF
+
+            CASE 5:
+                TULIS "Terima kasih telah belanja di Kitamart"
+                KELUAR DARI PROGRAM
+
+            DEFAULT:
+                TULIS "Pilihan tidak valid"
+
+        ENDSWITCH
+
+    SAMPAI pilihan = 5
+
+ENDPROGRAM
