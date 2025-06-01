@@ -13,14 +13,12 @@ Membuat sistem kasir mini yang mampu:
 
   Fitur Utama
 - Input produk, pelanggan, dan transaksi
-- Sorting:
-  - Produk berdasarkan harga (ascending) menggunakan **selection sort**
-  - Transaksi berdasarkan total belanja (descending) menggunakan **insertion sort**
-- Pencarian:
-  - Produk berdasarkan nama 
-  - Transaksi berdasarkan ID
+- Sorting Produk berdasarkan harga (ascending) menggunakan **selection sort**
+- Sorting Transaksi berdasarkan total belanja (descending) menggunakan **insertion sort**
+- Searching Produk berdasarkan nama
+- Transaksi berdasarkan ID
 - Hitung otomatis total belanja setiap transaksi
 - Menu interaktif berbasis terminal
   
 language: Go
-reference:
+Referensi:
