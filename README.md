@@ -4,9 +4,9 @@ final assignment algorithm and programming 2 | Mini Cashier Program: Product, Cu
 description
 
 Daftar Isi:
-1. Struct
-2. Struct
-3. Struct
+1. Struct Produk
+2. Struct Pelanggan
+3. Struct Transaksi
 4. Selection Sort
 5. Insertsion Sort
 6.
@@ -21,9 +21,11 @@ Membuat sistem kasir mini yang mampu:
 
   Fitur Utama
 - Input produk, pelanggan, dan transaksi
+-Dokumentasi Data Pelanggan
+ Fitur ini memungkinkan pengguna untuk menyimpan ID pelanggan dan nama pelanggan.
 - Sorting:
-  - Produk berdasarkan harga (ascending) menggunakan **selection sort**
-  - Transaksi berdasarkan total belanja (descending) menggunakan **insertion sort**
+  - Produk berdasarkan harga (ascending) menggunakan selection sort
+  - Transaksi berdasarkan total belanja (descending) menggunakan insertion sort
 - Pencarian:
   - Produk berdasarkan nama 
   - Transaksi berdasarkan ID
