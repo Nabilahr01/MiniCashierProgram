@@ -21,8 +21,8 @@ Membuat sistem kasir mini yang mampu:
 
   Fitur Utama
 - Input produk, pelanggan, dan transaksi
--Dokumentasi Data Pelanggan
- Fitur ini memungkinkan pengguna untuk menyimpan ID pelanggan dan nama pelanggan.
+- Dokumentasi Data Pelanggan
+Fitur ini memungkinkan pengguna untuk menyimpan ID pelanggan dan nama pelanggan.
 - Sorting:
   - Produk berdasarkan harga (ascending) menggunakan selection sort
   - Transaksi berdasarkan total belanja (descending) menggunakan insertion sort
