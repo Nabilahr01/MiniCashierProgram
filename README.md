@@ -1,15 +1,7 @@
 # MiniCashierProgram
 final assignment algorithm and programming 2 | Mini Cashier Program: Product, Customer, and Transaction Management
 
-description
-
-Daftar Isi:
-1. Struct
-2. Struct
-3. Struct
-4. Selection Sort
-5. Insertsion Sort
-6.
+deskripsi
 
 Tujuan Program
 Membuat sistem kasir mini yang mampu:
@@ -30,5 +22,5 @@ Membuat sistem kasir mini yang mampu:
 - Hitung otomatis total belanja setiap transaksi
 - Menu interaktif berbasis terminal
   
-language
-reference
+language: Go
+reference:
