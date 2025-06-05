@@ -1,1 +1,1 @@
-Fungsi dataProdukByID bertujuan untuk mencari dan mengembalikan nama produk berdasarkan ID-nya dari daftar produk yang diberikan.
+Fitur DataPelangganByID merupakan fungsi penting dalam sistem Kitamart yang berfungsi untuk mengambil nama pelanggan berdasarkan ID pelanggan. Fitur ini digunakan ketika sistem perlu menampilkan data pelanggan yang melakukan transaksi.
