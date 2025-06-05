@@ -123,8 +123,14 @@ kamus
     daftarPelanggan: Pelanggan
     daftarTransaksi: Transaksi
 algoritma
-    output("Masukkan jumlah produk: ")
-    input(jumlahProduk)
+    for selama jumlahProduk < 0 lakukan
+        output("Masukkan jumlah produk: ")
+        input(jumlahProduk)
+    
+        if  jumlahProduk < 0 maka 
+            output("Jumlah produk tidak boleh negatif. Silakan coba lagi.")
+        akhir jika
+    endfor
     buat array daftarProduk sebanyak jumlahProduk
     for i from 0 to jumlahProduk - 1 do
         daftarProduk[i].ID ← i + 1
