@@ -1,1 +1,1 @@
-Fitur Search Product menjadikan sistem kasir Kitamart lebih interaktif dan efisien, membantu pengguna mengelola dan menemukan produk dengan mudah hanya dengan memasukkan kata kunci.
+Fitur Search Transaksi menjadikan sistem Kitamart lebih kuat dalam hal manajemen data transaksi. Dengan hanya memasukkan ID, pengguna bisa langsung melihat detail pembelian lengkap—mulai dari siapa pelanggan, apa yang dibeli, hingga total pembayaran—dalam hitungan detik.
