@@ -1,7 +1,6 @@
 # MiniCashierProgram
-final assignment algorithm and programming 2 | Mini Cashier Program: Product, Customer, and Transaction Management
+Data Pelanggan
 
-Dokumentasi Data Pelanggan
 Fitur ini memungkinkan pengguna untuk menyimpan ID pelanggan dan nama pelanggan secara terstruktur. Dengan fitur ini, sistem dapat:
 - Mencatat identitas setiap pelanggan secara unik melalui ID.
 - Menyimpan nama pelanggan untuk memudahkan identifikasi dan pencarian.
