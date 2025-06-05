@@ -1,7 +1,1 @@
-Dengan fitur Sort Transaksi, pengguna bisa:
-
-Mengelola dan menganalisis transaksi lebih efektif.
-
-Menyusun laporan transaksi dengan cepat.
-
-Mendapatkan wawasan penting dari data penjualan.
+Fitur Search Product menjadikan sistem kasir Kitamart lebih interaktif dan efisien, membantu pengguna mengelola dan menemukan produk dengan mudah hanya dengan memasukkan kata kunci.
