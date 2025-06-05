@@ -1,1 +1,23 @@
-Fitur Menu adalah penghubung utama antara pengguna dan program. Menu ini memungkinkan pengguna untuk melihat data produk dan transaksi yang sudah terurut, melakukan pencarian produk atau transaksi, serta keluar dari aplikasi dengan jelas. Secara teknis, fitur ini berfungsi sebagai pengendali utama alur program, yaitu memberikan antarmuka interaktif yang memungkinkan pengguna memilih dan mengakses berbagai fitur utama dalam sistem secara berulang. Dengan memanfaatkan perulangan for, input fmt.Scan, dan pemrosesan switch case, pengguna dapat menjalankan berbagai operasi seperti mengurutkan, mencari, dan menampilkan data. Fitur ini membuat program menjadi interaktif dan ramah pengguna, sekaligus mengatur alur kerja seluruh sistem secara terstruktur. Tanpa fitur menu, pengguna tidak bisa menggunakan fungsi-fungsi lain dengan mudah.
+# MiniCashierProgram
+final assignment algorithm and programming 2 | Mini Cashier Program: Product, Customer, and Transaction Management
+
+Deskripsi
+Program ini dirancang untuk membangun sistem kasir mini yang sederhana namun fungsional. Sistem ini memungkinkan pengguna untuk mencatat daftar produk beserta harga masing-masing, menyimpan data pelanggan, serta mengelola transaksi pembelian secara terstruktur. Selain itu, program dilengkapi dengan fitur pencarian dan pengurutan data untuk mempermudah pencatatan dan analisis transaksi maupun produk. Setiap transaksi yang dicatat secara otomatis akan dihitung total belanjanya, sehingga meminimalkan kesalahan perhitungan dan meningkatkan efisiensi proses penjualan. Sistem ini cocok digunakan pada skala usaha kecil seperti toko ritel, warung, atau minimarket sederhana.
+
+Tujuan Program
+- Memudahkan pengelolaan data produk, pelanggan, dan transaksi penjualan
+- Meminimalkan kesalahan perhitungan dan meningkatkan efisiensi proses penjualan
+- Menyediakan antarmuka pengguna berbasis konsol yang intuitif dan mudah digunakan oleh pengelola toko
+
+Fitur Utama
+- Input produk, pelanggan, dan transaksi
+- Sorting Produk berdasarkan harga (ascending) menggunakan *selection sort*
+- Sorting Transaksi berdasarkan total belanja (descending) menggunakan *insertion sort*
+- Searching Produk berdasarkan nama
+- Transaksi berdasarkan ID
+- Hitung otomatis total belanja setiap transaksi
+- Menu interaktif berbasis terminal
+  
+language: Go
+
+Referensi: Modul Praktikum Algoritma dan Pemrograman 2
